@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sender</title>
+</head>
+<body>
+    <h1>ارسال نوتیفیکیشن</h1>
+    <input type="text" id="messageInput" placeholder="متن نوتیفیکیشن">
+    <button onclick="sendNotification()">ارسال</button>
+
+    <script>
+        function sendNotification() {
+            const message = document.getElementById('messageInput').value;
+            // ذخیره پیام در localStorage و سپس حذف آن برای فعالسازی رویداد
+            localStorage.setItem('app-notification', message);
+            localStorage.removeItem('app-notification');
+            document.getElementById('messageInput').value = ''; // پاک کردن فیلد ورودی
+        }
+    </script>
+</body>
+</html>

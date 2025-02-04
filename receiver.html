@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receiver</title>
+</head>
+<body>
+    <h1>نوتیفیکیشن‌های دریافت شده</h1>
+    <div id="notificationContainer"></div>
+
+    <script>
+        window.addEventListener('storage', function(event) {
+            if (event.key === 'app-notification' && event.newValue) {
+                const message = event.newValue;
+                const container = document.getElementById('notificationContainer');
+                const notificationElement = document.createElement('div');
+                notificationElement.textContent = message;
+                container.appendChild(notificationElement);
+            }
+        });
+    </script>
+</body>
+</html>
