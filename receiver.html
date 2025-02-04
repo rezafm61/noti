@@ -7,16 +7,20 @@
     <h1>نوتیفیکیشن‌های دریافت شده</h1>
     <div id="notificationContainer"></div>
 
-    <script>
-        window.addEventListener('storage', function(event) {
-            if (event.key === 'app-notification' && event.newValue) {
-                const message = event.newValue;
-                const container = document.getElementById('notificationContainer');
-                const notificationElement = document.createElement('div');
-                notificationElement.textContent = message;
-                container.appendChild(notificationElement);
-            }
-        });
-    </script>
+<!-- receiver.html -->
+<script>
+    // درخواست مجوز برای نمایش نوتیفیکیشن
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+
+    // دریافت پیام از localStorage و نمایش نوتیفیکیشن
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'app-notification' && event.newValue) {
+            const message = event.newValue;
+            new Notification("پیام جدید!", { body: message });
+        }
+    });
+</script>
 </body>
 </html>
